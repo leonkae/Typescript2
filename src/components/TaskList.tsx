@@ -29,3 +29,5 @@ const TaskList: React.FC<TaskListItems> = ({
     </div>
   );
 };
+
+export default TaskList;

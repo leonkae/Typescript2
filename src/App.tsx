@@ -1,7 +1,7 @@
 import './App.css';
 import { Task } from './types/index';
 import React,{ useState } from 'react';
-
+import Tasklist from './components/TaskList';
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState<string>('');
@@ -34,6 +34,8 @@ const App: React.FC = () => {
         onChange={(e) => setInput(e.target.value)}
         placeholder="Add a new task"
       />
+      <button onClick={addTask}>Add Task</button>
+      <Tasklist tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
     </div>
   );
 }
