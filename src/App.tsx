@@ -28,6 +28,12 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Task Manager</h1>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Add a new task"
+      />
     </div>
   );
 }
