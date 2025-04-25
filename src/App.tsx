@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Task } from './types/index';
+import React,{ useState } from 'react';
 
-function App() {
+const App: React.FC = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [input, setInput] = useState<string>('');
+
+  const addTask = () =>{
+    if (input.trim() === '') return;
+    const newTask: Task = {
+      id: Date.now(),
+      text: input,
+      completed: false,
+    };
+    setTasks([...tasks, newTask]);
+    setInput('');
+  };
+
+  const toggleTask = (id: number) => {
+    setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task));
+  };
+  
+  const deleteTask = (id: number) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Task Manager</h1>
     </div>
   );
 }
